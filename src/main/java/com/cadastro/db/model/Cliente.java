@@ -1,7 +1,5 @@
 package com.cadastro.db.model;
 import jakarta.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -15,7 +13,6 @@ public class Cliente {
     private String dtNascimento;
     private Date dataInsercao;
     private Date dataExclusao;
-    DateFormat dataString = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public Cliente() {
     }
@@ -29,7 +26,7 @@ public class Cliente {
         this.nome = nome;
         this.cpfcnpj = cpfcnpj;
         this.dtNascimento = dtNascimento;
-        formatarData(dataInsercao);
+        this.dataInsercao = dataInsercao;
         this.dataExclusao = dataExclusao;
     }
 
@@ -81,8 +78,5 @@ public class Cliente {
 
     public Long getId() {
         return id;
-    }
-    private String formatarData(Date dataInsercao) {
-        return dataString.format(dataInsercao);
     }
 }

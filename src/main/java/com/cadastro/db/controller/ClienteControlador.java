@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class ClienteControlador {
     }
     @PostMapping("/clientes")
     public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
+        cliente.setDataInsercao(Calendar.getInstance().getTime());
         return new ResponseEntity<>(repositorio.save(cliente), HttpStatus.OK);
     }
     @PutMapping("/clientes/{id}")
