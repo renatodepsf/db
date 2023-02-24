@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -47,7 +46,8 @@ public class ClienteControlador {
     @PutMapping("/clientes/{id}")
     public Cliente alterarDadosCliente(@PathVariable("id") Long id, @RequestBody Cliente clienteNovo) {
         Cliente clienteAtual = repositorio.findById(id).get(); // retorna objeto por id
-        BeanUtils.copyProperties(clienteAtual, clienteNovo, "id"); // copiar atributos entre objetos
+        BeanUtils.copyProperties(clienteNovo, clienteAtual, "id"); // copiar atributos entre objetos
+        clienteAtual.setDataExclusao(Calendar.getInstance().getTime());
         return repositorio.save(clienteAtual);
     }
 
