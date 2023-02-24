@@ -1,14 +1,12 @@
 package com.cadastro.db.model;
-
 import jakarta.persistence.*;
-
-import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 @Table(name = "dbCadastro")
-public class Cliente implements Serializable {
-
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,8 +15,13 @@ public class Cliente implements Serializable {
     private String dtNascimento;
     private Date dataInsercao;
     private Date dataExclusao;
+    DateFormat dataString = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     public Cliente() {
+    }
+
+    public Cliente(Date dataExclusao) {
+        this.dataExclusao = dataExclusao;
     }
 
     public Cliente(Long id, String nome, String cpfcnpj, String dtNascimento, Date dataInsercao, Date dataExclusao) {
@@ -26,7 +29,7 @@ public class Cliente implements Serializable {
         this.nome = nome;
         this.cpfcnpj = cpfcnpj;
         this.dtNascimento = dtNascimento;
-        this.dataInsercao = dataInsercao;
+        formatarData(dataInsercao);
         this.dataExclusao = dataExclusao;
     }
 
@@ -78,5 +81,8 @@ public class Cliente implements Serializable {
 
     public Long getId() {
         return id;
+    }
+    private String formatarData(Date dataInsercao) {
+        return dataString.format(dataInsercao);
     }
 }

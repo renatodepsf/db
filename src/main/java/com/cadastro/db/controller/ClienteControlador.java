@@ -3,6 +3,7 @@ package com.cadastro.db.controller;
 import com.cadastro.db.exception.ResourceNotFoundException;
 import com.cadastro.db.model.Cliente;
 import com.cadastro.db.repository.ClienteRepositorio;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,15 +38,19 @@ public class ClienteControlador {
     public ResponseEntity<List<Cliente>> buscarClientePorCpfCnpj(@RequestParam String cpfcnpj) {
         return new ResponseEntity<List<Cliente>>(repositorio.findByCpfcnpj(cpfcnpj), HttpStatus.MULTI_STATUS);
     }
-    @PostMapping
-    public Cliente criarCliente(@RequestBody Cliente cliente) {
-        cliente.setDataInsercao(new Date());
-        return repositorio.save(cliente);
+    @PostMapping("/clientes")
+    public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
+        return new ResponseEntity<>(repositorio.save(cliente), HttpStatus.OK);
     }
+    @PutMapping("/clientes/{id}")
+    public Cliente alterarDadosCliente(@PathVariable("id") Long id, @RequestBody Cliente clienteNovo) {
+        Cliente clienteAtual = repositorio.findById(id).get(); // retorna objeto por id
+        BeanUtils.copyProperties(clienteAtual, clienteNovo, "id"); // copiar atributos entre objetos
+        return repositorio.save(clienteAtual);
+    }
+
     @DeleteMapping("/clientes/{id}")
     public void deletarClientePorId(@PathVariable("id") Long id) {
         repositorio.deleteById(id);
-        Cliente cliente = new Cliente();
-        cliente.setDataExclusao(new Date());
     }
 }
