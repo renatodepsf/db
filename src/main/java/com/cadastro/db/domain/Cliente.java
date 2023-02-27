@@ -68,7 +68,7 @@ public class Cliente {
         return dataExclusao;
     }
 
-    public void setDataExclusao(Date dataExclusao) {
+    public void setDataAlteracao(Date dataExclusao) {
         this.dataExclusao = dataExclusao;
     }
 
