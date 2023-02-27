@@ -1,4 +1,4 @@
-package com.cadastro.db.model;
+package com.cadastro.db.domain;
 import jakarta.persistence.*;
 import java.util.Date;
 

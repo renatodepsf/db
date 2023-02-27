@@ -1,8 +1,8 @@
-package com.cadastro.db.controller;
+package com.cadastro.db.resourcer;
 
 import com.cadastro.db.exception.ResourceNotFoundException;
-import com.cadastro.db.model.Cliente;
-import com.cadastro.db.repository.ClienteRepositorio;
+import com.cadastro.db.domain.Cliente;
+import com.cadastro.db.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping
-public class ClienteControlador {
+public class ClienteResource {
 
     @Autowired
-    ClienteRepositorio repositorio;
+    ClienteRepository repositorio;
 
     @GetMapping("/clientes") //buscar todos
     public List<Cliente> listaClientes() {
@@ -32,11 +32,11 @@ public class ClienteControlador {
 
     @GetMapping("clientes/nome")
     public ResponseEntity<List<Cliente>> buscarClientePorNome(@RequestParam String nome) {
-        return new ResponseEntity<List<Cliente>>(repositorio.findByNome(nome), HttpStatus.MULTI_STATUS);
+        return new ResponseEntity<List<Cliente>>(repositorio.findByNome(nome), HttpStatus.OK);
     }
     @GetMapping("clientes/cpfcnpj")
     public ResponseEntity<List<Cliente>> buscarClientePorCpfCnpj(@RequestParam String cpfcnpj) {
-        return new ResponseEntity<List<Cliente>>(repositorio.findByCpfcnpj(cpfcnpj), HttpStatus.MULTI_STATUS);
+        return new ResponseEntity<List<Cliente>>(repositorio.findByCpfcnpj(cpfcnpj), HttpStatus.OK);
     }
     @PostMapping("/clientes")
     public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
