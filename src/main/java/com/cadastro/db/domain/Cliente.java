@@ -10,6 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "dbCadastro")
 public class Cliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
