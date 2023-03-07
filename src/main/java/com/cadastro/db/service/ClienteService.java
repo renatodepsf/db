@@ -4,12 +4,15 @@ import com.cadastro.db.exception.ResourceNotFoundException;
 import com.cadastro.db.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class ClienteService {
     private final ClienteRepository repository;
+    private RestTemplate restTemplate = new RestTemplate();
 
     public ClienteService(ClienteRepository repository) {
         this.repository = repository;
