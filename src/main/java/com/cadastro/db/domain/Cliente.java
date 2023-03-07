@@ -20,4 +20,8 @@ public class Cliente {
     private Date dataInsercao;
     private Date dataAlteracao;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dbEndereco")
+    Endereco endereco;
+
 }

@@ -3,6 +3,7 @@ package com.cadastro.db.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 
 import java.io.Serializable;
 
