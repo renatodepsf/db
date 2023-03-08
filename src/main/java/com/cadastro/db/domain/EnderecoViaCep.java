@@ -3,7 +3,6 @@ package com.cadastro.db.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 
 import java.io.Serializable;
 
@@ -11,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "dbEndereco")
-public class Endereco implements Serializable{
+public class EnderecoViaCep implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

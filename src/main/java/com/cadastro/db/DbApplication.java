@@ -1,8 +1,5 @@
 package com.cadastro.db;
 
-import com.cadastro.db.domain.Endereco;
-import com.cadastro.db.repository.EnderecoRepository;
-import com.cadastro.db.service.ClienteService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

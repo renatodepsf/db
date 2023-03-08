@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "dbCadastro")
+@Table(name = "dbCliente")
 public class Cliente {
 
     @Id
@@ -22,6 +22,6 @@ public class Cliente {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dbEndereco")
-    Endereco endereco;
+    EnderecoViaCep endereco;
 
 }

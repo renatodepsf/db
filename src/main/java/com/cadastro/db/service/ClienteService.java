@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public class ClienteService {
     private final ClienteRepository repository;
-    private RestTemplate restTemplate = new RestTemplate();
 
     public ClienteService(ClienteRepository repository) {
         this.repository = repository;

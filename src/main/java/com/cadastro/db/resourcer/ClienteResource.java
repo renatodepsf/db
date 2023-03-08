@@ -1,11 +1,15 @@
 package com.cadastro.db.resourcer;
 
 import com.cadastro.db.domain.Cliente;
+import com.cadastro.db.domain.EnderecoViaCep;
+import com.cadastro.db.service.EnderecoViaCepService;
 import com.cadastro.db.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 @RestController
@@ -13,6 +17,10 @@ import java.util.List;
 public class ClienteResource {
     @Autowired
     ClienteService service;
+
+    @Autowired
+    EnderecoViaCepService cepService;
+
 
     @GetMapping("/clientes")
     public List<Cliente> buscarTodosClientes() {
@@ -34,8 +42,9 @@ public class ClienteResource {
         return new ResponseEntity<>(service.buscarClientePorCpfCnpj(cpfcnpj), HttpStatus.OK);
     }
 
-    @PostMapping("/clientes")
-    public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
+    @PostMapping("/{cep}")
+    public ResponseEntity<Cliente> criarCliente(@PathVariable("cep") String cep, @RequestBody Cliente cliente) {
+        EnderecoViaCep enderecoViaCep = cepService.buscarEnderecoPorCep(cep);
         return new ResponseEntity<>(service.criarCliente(cliente), HttpStatus.OK);
     }
 
