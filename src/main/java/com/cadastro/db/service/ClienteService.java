@@ -3,6 +3,7 @@ import com.cadastro.db.domain.Cliente;
 import com.cadastro.db.exception.ResourceNotFoundException;
 import com.cadastro.db.repository.ClienteRepository;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,8 @@ import java.util.List;
 @Service
 public class ClienteService {
     private final ClienteRepository repository;
+    @Autowired
+    ViaCepService cepService;
 
     public ClienteService(ClienteRepository repository) {
         this.repository = repository;
@@ -34,6 +37,7 @@ public class ClienteService {
     }
 
     public Cliente criarCliente(Cliente cliente) {
+        cepService.buscarEnderecoPorCep(cliente.getEndereco().getCep());
         cliente.setDataInsercao(Calendar.getInstance().getTime());
         return repository.save(cliente);
     }

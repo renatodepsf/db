@@ -22,6 +22,6 @@ public class Cliente {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dbEndereco")
-    EnderecoViaCep endereco;
+    Endereco endereco;
 
 }
