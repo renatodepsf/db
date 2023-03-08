@@ -2,5 +2,5 @@
 
 ## Java, MySQL e Postman
 ### O que faz: 
-- Cadastrar um cliente com endereço.
+- Cadastrar um cliente com endereço(CRUD).
 - Consome a API [Viacep](https://viacep.com.br/) para povoar o endereço.
