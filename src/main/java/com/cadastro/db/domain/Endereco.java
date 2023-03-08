@@ -1,7 +1,9 @@
 package com.cadastro.db.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -9,6 +11,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "dbEndereco")
 public class Endereco implements Serializable {
     @Id
@@ -23,18 +27,3 @@ public class Endereco implements Serializable {
     private String uf;
 
 }
-
-/*
-{
-    "cep": "01001-000",
-    "logradouro": "Praça da Sé",
-    "complemento": "lado ímpar",
-    "bairro": "Sé",
-    "localidade": "São Paulo",
-    "uf": "SP",
-    "ibge": "3550308",
-    "gia": "1004",
-    "ddd": "11",
-    "siafi": "7107"
-}
-*/

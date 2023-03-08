@@ -50,6 +50,7 @@ public class ClienteResource {
 
     @DeleteMapping("/clientes/{id}")
     public void deletarClientePorId(@PathVariable("id") Long id) {
+
         service.deletarClientePorId(id);
     }
 }
