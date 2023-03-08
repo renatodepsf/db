@@ -1,6 +1,5 @@
 package com.cadastro.db.service;
 import com.cadastro.db.domain.Cliente;
-import com.cadastro.db.domain.Endereco;
 import com.cadastro.db.domain.ViaCep;
 import com.cadastro.db.exception.ResourceNotFoundException;
 import com.cadastro.db.repository.ClienteRepository;
@@ -40,15 +39,13 @@ public class ClienteService {
 
     public Cliente criarCliente(Cliente cliente) {
         ViaCep viaCep1 = cepService.buscarEnderecoPorCep(cliente.getEndereco().getCep());
-        Endereco endereco = new Endereco();
-        endereco.setCep(viaCep1.getCep());
-        endereco.setLogradouro(viaCep1.getLogradouro());
-        endereco.setComplemento(viaCep1.getComplemento());
-        endereco.setBairro(viaCep1.getBairro());
-        endereco.setLocalidade(viaCep1.getLocalidade());
-        endereco.setUf(viaCep1.getUf());
+        cliente.getEndereco().setCep(viaCep1.getCep());
+        cliente.getEndereco().setLogradouro(viaCep1.getLogradouro());
+        cliente.getEndereco().setComplemento(viaCep1.getComplemento());
+        cliente.getEndereco().setBairro(viaCep1.getBairro());
+        cliente.getEndereco().setLocalidade(viaCep1.getLocalidade());
+        cliente.getEndereco().setUf(viaCep1.getUf());
         cliente.setDataInsercao(Calendar.getInstance().getTime());
-        cliente.setEndereco(endereco);
         return repository.save(cliente);
     }
 

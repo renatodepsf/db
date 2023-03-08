@@ -1,8 +1,6 @@
 package com.cadastro.db.resourcer;
 
 import com.cadastro.db.domain.Cliente;
-import com.cadastro.db.domain.Endereco;
-import com.cadastro.db.service.ViaCepService;
 import com.cadastro.db.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +38,7 @@ public class ClienteResource {
 
     @PostMapping("/clientes")
     public ResponseEntity<Cliente> criarCliente(@RequestBody Cliente cliente) {
-        return new ResponseEntity<>(service.criarCliente(cliente), HttpStatus.OK);
+        return new ResponseEntity<>(service.criarCliente(cliente), HttpStatus.CREATED);
     }
 
     @PutMapping("/clientes/{id}")
@@ -49,8 +47,8 @@ public class ClienteResource {
     }
 
     @DeleteMapping("/clientes/{id}")
-    public void deletarClientePorId(@PathVariable("id") Long id) {
-
+    public ResponseEntity deletarClientePorId(@PathVariable("id") Long id) {
         service.deletarClientePorId(id);
+        return ResponseEntity.ok("Cliente com ID: " + id + " excluído!");
     }
 }
